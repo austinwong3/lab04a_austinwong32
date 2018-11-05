@@ -19,9 +19,9 @@ size_t WordCount::hash(std::string word) const {
 
 int WordCount::getTotalWords() const {
 	int total = 0;
-	for(int i = 0; i<CAPACITY; i++)
+	for(int i = 0; i<static_cast<int>(CAPACITY); i++)
 	{
-		for (int j = 0; j<table[i].size(); j++)
+		for (int j = 0; j<static_cast<int>(table[i].size()); j++)
 		{
 			total+=static_cast<int>(table[i].at(j).second);
 		}
@@ -31,7 +31,7 @@ int WordCount::getTotalWords() const {
 
 int WordCount::getNumUniqueWords() const {
 	int total = 0;
-	for(int i = 0; i<CAPACITY; i++)
+	for(int i = 0; i<static_cast<int>(CAPACITY); i++)
 	{
 		total+=table[i].size();
 	}
@@ -44,7 +44,7 @@ int WordCount::getWordCount(std::string word) const {
 		return 0;
 	}
 	string vword = stripWord(word);
-	for (int i = 0; i < vword.length(); i++)
+	for (int i = 0; i < static_cast<int>(vword.length()); i++)
 	{
 		vword[i] = toupper(vword[i]);
 	}
@@ -71,7 +71,7 @@ int WordCount::incrWordCount(std::string word) {
 	
 	
 	string vword = stripWord(word);
-	for (int i = 0; i < vword.length(); i++)
+	for (int i = 0; i < static_cast<int>(vword.length()); i++)
 	{
 		vword[i] = toupper(vword[i]);
 	}
@@ -81,7 +81,7 @@ int WordCount::incrWordCount(std::string word) {
 		//vector<pair<std::string, size_t>>::const_iterator ptr = table[ind].begin();
 		
 		//for (ptr=table[ind].begin(); ptr < table[ind].end(); ptr++) 
-		for (int i = 0; i< table[ind].size(); i++)
+		for (int i = 0; i< static_cast<int>(table[ind].size()); i++)
 		{
 			if(table[ind][i].first == vword)
 			{
