@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include<iterator> // for iterators 
+#include<iterator> // for iterators
 
 class WordCount {
 public:

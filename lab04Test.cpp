@@ -39,10 +39,9 @@ int main() {
     ASSERT_EQUALS(9,w.getTotalWords());
 
     cout << "testing caps"<<endl;
-    ASSERT_EQUALS(6,w.incrWordCount("hElLO")); //' center
+    ASSERT_EQUALS(6,w.incrWordCount("hElLO"));
     ASSERT_EQUALS(5,w.getNumUniqueWords());
     ASSERT_EQUALS(10,w.getTotalWords());
-
 
     return 0; //stub
 }

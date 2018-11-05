@@ -90,9 +90,6 @@ int WordCount::incrWordCount(std::string word) {
 	int ind = hash(vword);
 	if (exist)
 	{
-		//vector<pair<std::string, size_t>>::const_iterator ptr = table[ind].begin();
-		
-		//for (ptr=table[ind].begin(); ptr < table[ind].end(); ptr++) 
 		for (int i = 0; i< static_cast<int>(table[ind].size()); i++)
 		{
 			if(table[ind][i].first == vword)
