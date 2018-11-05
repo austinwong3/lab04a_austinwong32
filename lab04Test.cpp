@@ -24,6 +24,9 @@ int main() {
     ASSERT_EQUALS(4,w.incrWordCount("-__123123123123hello-123-")); // starts with -
     ASSERT_EQUALS(5,w.incrWordCount("'_123123123123hello-123'")); //starts with '
     ASSERT_EQUALS(0,w.incrWordCount("")); //empty string
+    ASSERT_EQUALS(0,w.incrWordCount("        ")); //empty string
+    ASSERT_EQUALS(0,w.incrWordCount("1231273861"));
+    ASSERT_EQUALS(0,w.incrWordCount("------"));
     ASSERT_EQUALS(7,w.getTotalWords());
     ASSERT_EQUALS(3,w.getNumUniqueWords());
 

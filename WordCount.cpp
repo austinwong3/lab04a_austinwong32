@@ -67,6 +67,18 @@ int WordCount::incrWordCount(std::string word) {
 	{
 		return 0;
 	}
+	bool valid = false;
+	for(int i = 0; i<static_cast<int>(word.length()); i++ )
+	{
+		if (isalpha(word[i]))
+		{
+			valid =true;
+		}
+	}
+	if (valid == false)
+	{
+		return 0;
+	}
 	bool exist = getWordCount(word);
 	
 	
@@ -111,6 +123,18 @@ bool WordCount::isWordChar(char c) {
 
 std::string WordCount::stripWord(std::string word) {
 	if (word == "")
+	{
+		return "";
+	}
+	bool valid = false;
+	for(int i = 0; i<static_cast<int>(word.length()); i++ )
+	{
+		if (isalpha(word[i]))
+		{
+			valid =true;
+		}
+	}
+	if (valid == false)
 	{
 		return "";
 	}
