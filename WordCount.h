@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include<iterator> // for iterators 
 
 class WordCount {
 public:
@@ -46,6 +47,9 @@ public:
   // For example, "can't" and "good-hearted" are considered valid words.
   // "12mOnkEYs-$" will be stripped to "mOnkEYs"
 
+  size_t hash(std::string word) const;
+  // Hash function that will return an index for the hash table.
+
 private:
   const static size_t CAPACITY = 100;
   // capacity for the hash table array
@@ -56,8 +60,7 @@ private:
   // pair where the string value represents a unique word and the size_t
   // value represents the number of occurences for that word.
 
-  size_t hash(std::string word) const;
-  // Hash function that will return an index for the hash table.
+  
 };
 
 

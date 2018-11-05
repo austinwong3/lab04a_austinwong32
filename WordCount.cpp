@@ -18,34 +18,133 @@ size_t WordCount::hash(std::string word) const {
 }
 
 int WordCount::getTotalWords() const {
-	// STUB.
-	return -1;
+	int total = 0;
+	for(int i = 0; i<CAPACITY; i++)
+	{
+		for (int j = 0; j<table[i].size(); j++)
+		{
+			total+=static_cast<int>(table[i].at(j).second);
+		}
+	}
+	return total;
 }
 
 int WordCount::getNumUniqueWords() const {
-	// STUB
-	return -1;
+	int total = 0;
+	for(int i = 0; i<CAPACITY; i++)
+	{
+		total+=table[i].size();
+	}
+	return total;
 }
 
 int WordCount::getWordCount(std::string word) const {
-	// STUB
-	return -1;
+	if (word == "")
+	{
+		return 0;
+	}
+	string vword = stripWord(word);
+	for (int i = 0; i < vword.length(); i++)
+	{
+		vword[i] = toupper(vword[i]);
+	}
+	int ind = hash(vword);
+	vector<pair<std::string, size_t>>::const_iterator ptr = table[ind].begin();
+	
+	for (ptr=table[ind].begin(); ptr < table[ind].end(); ptr++) 
+	{
+        if(ptr->first == vword)
+		{
+			return ptr->second;
+		}
+	}
+	return 0;
 }
 	
 
 int WordCount::incrWordCount(std::string word) {
-	// STUB
-	return -1;
+	if (word == "")
+	{
+		return 0;
+	}
+	bool exist = getWordCount(word);
+	
+	
+	string vword = stripWord(word);
+	for (int i = 0; i < vword.length(); i++)
+	{
+		vword[i] = toupper(vword[i]);
+	}
+	int ind = hash(vword);
+	if (exist)
+	{
+		//vector<pair<std::string, size_t>>::const_iterator ptr = table[ind].begin();
+		
+		//for (ptr=table[ind].begin(); ptr < table[ind].end(); ptr++) 
+		for (int i = 0; i< table[ind].size(); i++)
+		{
+			if(table[ind][i].first == vword)
+			{
+				table[ind][i].second+=1;
+				return table[ind][i].second;
+			}
+		}
+	}
+	else
+	{
+		pair<std::string, size_t> temp (vword, 1);
+		table[ind].push_back(temp);
+		return 1;
+	}
+	return 0;
 }
 
 
 bool WordCount::isWordChar(char c) {
-	// STUB
+	if(isalpha(c) || c == '-' || c == '\'')
+	{
+		return true;
+	}
 	return false;
 }
 
 
 std::string WordCount::stripWord(std::string word) {
-	// STUB
-	return "";
+	if (word == "")
+	{
+		return "";
+	}
+	bool cont = true;
+	while (cont)
+	{
+		char first = word.at(0);
+		if (!isWordChar(first) || first == '-' || first == '\'' )
+		{
+			word.erase(0,1);
+		}
+		else{
+			cont = false;
+		}
+	}
+	for (size_t i = 1; i < word.size()-1; i++) {
+		if (!isWordChar(word.at(i)))
+		{
+			word.erase(i,1);
+			i--;
+		}
+	}
+	
+	cont = true;
+	while (cont)
+	{
+		char last = word.at(word.size()-1);
+		if (!isWordChar(last) || last == '-' || last == '\'' )
+		{
+			word.erase(word.size()-1,1);
+		}
+		else{
+			cont = false;
+		}
+	}
+	return word;
 }
